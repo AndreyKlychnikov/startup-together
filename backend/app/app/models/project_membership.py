@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, Boolean
 from sqlalchemy.orm import relationship
 
 from app.db.base_class import Base
@@ -16,4 +16,5 @@ class ProjectMembership(Base):
     user = relationship("User", back_populates="projects")
     project_id = Column(Integer, ForeignKey("project.id"))
     project = relationship("Project", back_populates="members")
+    accepted = Column(Boolean, default=False)
 

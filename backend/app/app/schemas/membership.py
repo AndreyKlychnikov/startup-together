@@ -21,6 +21,7 @@ class MembershipInDBBase(MembershipBase):
     id: int
     project_id: int
     user_id: int
+    accepted: bool
 
     class Config:
         orm_mode = True
