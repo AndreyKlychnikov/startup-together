@@ -1,5 +1,6 @@
-from typing import Any, List
+from typing import Any
 
+import sqlalchemy
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -7,6 +8,25 @@ from app import crud, models, schemas
 from app.api import deps
 
 router = APIRouter()
+
+
+@router.post("/", response_model=schemas.membership.ZippedMembership)
+def create_membership(
+    *,
+    db: Session = Depends(deps.get_db),
+    membership_in: schemas.membership.MembershipCreate,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Create new membership (join request).
+    """
+    if membership_in.user_id != current_user.id:
+        raise HTTPException(status_code=400, detail="Not enough permissions")
+    try:
+        membership = crud.membership.create(db=db, obj_in=membership_in)
+    except sqlalchemy.exc.IntegrityError:
+        raise HTTPException(status_code=404, detail="Not found")
+    return membership
 
 
 @router.delete("/{id}", response_model=schemas.membership.ZippedMembership)
