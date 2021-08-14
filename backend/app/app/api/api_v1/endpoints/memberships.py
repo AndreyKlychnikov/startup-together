@@ -29,6 +29,26 @@ def create_membership(
     return membership
 
 
+@router.put("/{id}", response_model=schemas.membership.Membership)
+def update_membership(
+    *,
+    db: Session = Depends(deps.get_db),
+    id: int,
+    membership_in: schemas.membership.MembershipUpdate,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Update an membership.
+    """
+    membership = crud.membership.get(db=db, id=id)
+    if not membership:
+        raise HTTPException(status_code=404, detail="Membership not found")
+    if not crud.user.is_superuser(current_user) and (membership.project.owner_id != current_user.id):
+        raise HTTPException(status_code=400, detail="Not enough permissions")
+    membership = crud.membership.update(db=db, db_obj=membership, obj_in=membership_in)
+    return membership
+
+
 @router.delete("/{id}", response_model=schemas.membership.ZippedMembership)
 def delete_membership(
     *,
@@ -41,7 +61,7 @@ def delete_membership(
     """
     membership = crud.membership.get(db=db, id=id)
     if not membership:
-        raise HTTPException(status_code=404, detail="membership not found")
+        raise HTTPException(status_code=404, detail="Membership not found")
     if (
         not crud.user.is_superuser(current_user)
         and membership.user_id != current_user.id

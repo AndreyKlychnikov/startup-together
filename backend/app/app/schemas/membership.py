@@ -1,5 +1,3 @@
-from typing import Optional, List
-
 from pydantic import BaseModel
 
 from .user import User
@@ -10,11 +8,16 @@ class MembershipBase(BaseModel):
     pass
 
 
-# Properties to receive on item creation
+# Properties to receive on membership creation
 class MembershipCreate(MembershipBase):
     project_id: int
     user_id: int
 
+
+# Properties to receive on membership update
+class MembershipUpdate(MembershipBase):
+    accepted: bool
+    
 
 # Properties shared by models stored in DB
 class MembershipInDBBase(MembershipBase):
