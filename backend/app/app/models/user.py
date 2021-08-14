@@ -20,4 +20,4 @@ class User(Base):
     is_superuser = Column(Boolean(), default=False)
     items = relationship("Item", back_populates="owner")
     own_projects = relationship("Project", back_populates="owner")
-    projects = relationship("ProjectMembership", back_populates="member")
+    projects = relationship("ProjectMembership", back_populates="user")
