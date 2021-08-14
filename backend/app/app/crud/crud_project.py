@@ -4,6 +4,7 @@ from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
 from app.crud.base import CRUDBase
+from app.models import ProjectMembership
 from app.models.project import Project
 from app.schemas.project import ProjectCreate, ProjectUpdate
 
@@ -14,6 +15,8 @@ class CRUDProject(CRUDBase[Project, ProjectCreate, ProjectUpdate]):
     ) -> Project:
         obj_in_data = jsonable_encoder(obj_in)
         db_obj = self.model(**obj_in_data, owner_id=owner_id)
+        membership = ProjectMembership(project=db_obj, user_id=owner_id)
+        db_obj.members.append(membership)
         db.add(db_obj)
         db.commit()
         db.refresh(db_obj)

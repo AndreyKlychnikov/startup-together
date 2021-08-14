@@ -1,6 +1,8 @@
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import BaseModel
+
+from .membership import ZippedMembership
 
 
 # Shared properties
@@ -31,7 +33,7 @@ class ProjectInDBBase(ProjectBase):
 
 # Properties to return to client
 class Project(ProjectInDBBase):
-    pass
+    members: List[ZippedMembership]
 
 
 # Properties properties stored in DB
