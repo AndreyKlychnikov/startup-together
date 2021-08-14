@@ -27,7 +27,7 @@ class CRUDProject(CRUDBase[Project, ProjectCreate, ProjectUpdate]):
     ) -> List[Project]:
         return (
             db.query(self.model)
-            .filter(Project.owner_id == owner_id)
+            .filter(Project.owner_id == owner_id | Project.members.user_id == owner_id)
             .offset(skip)
             .limit(limit)
             .all()
