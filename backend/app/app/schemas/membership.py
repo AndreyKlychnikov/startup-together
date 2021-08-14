@@ -40,6 +40,7 @@ class ProjectInDB(MembershipInDBBase):
 # Zipped properties (for example, to get project request)
 class ZippedMembership(MembershipBase):
     user: User
+    accepted: bool
 
     class Config:
         orm_mode = True
