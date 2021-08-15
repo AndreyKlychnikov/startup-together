@@ -16,4 +16,4 @@ class Project(Base):
     description = Column(String, index=True)
     owner_id = Column(Integer, ForeignKey("user.id"))
     owner = relationship("User", back_populates="own_projects")
-    members = relationship("ProjectMembership", back_populates="project")
+    members = relationship("ProjectMembership", back_populates="project", lazy="selectin")
