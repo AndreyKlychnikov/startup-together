@@ -3,6 +3,7 @@ import '@babel/polyfill';
 import './component-hooks';
 import Vue from 'vue';
 import './plugins/vuetify';
+import Vuetify from 'vuetify';
 import './plugins/vee-validate';
 import App from './App.vue';
 import router from './router';
@@ -15,5 +16,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  vuetify : new Vuetify(),
   render: (h) => h(App),
 }).$mount('#app');
