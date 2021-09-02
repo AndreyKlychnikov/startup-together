@@ -21,3 +21,22 @@ export interface IUserProfileCreate {
     is_active?: boolean;
     is_superuser?: boolean;
 }
+
+export interface IProjectItem {
+    title: string;
+    description: string;
+    id: number;
+    owner_id: number;
+    members: [
+        {
+            user: {
+                email: string;
+                is_active: boolean;
+                is_superuser: boolean;
+                full_name: string;
+                id: number;
+            },
+            accepted: boolean;
+        }
+    ]
+}
