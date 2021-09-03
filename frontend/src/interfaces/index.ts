@@ -22,7 +22,7 @@ export interface IUserProfileCreate {
     is_superuser?: boolean;
 }
 
-export interface IProjectItem {
+export interface IProject {
     title: string;
     description: string;
     id: number;
