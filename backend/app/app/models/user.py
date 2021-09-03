@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Boolean, Column, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy import Boolean, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship, backref
 
 from app.db.base_class import Base
 
@@ -21,3 +21,11 @@ class User(Base):
     items = relationship("Item", back_populates="owner")
     own_projects = relationship("Project", back_populates="owner")
     projects = relationship("ProjectMembership", back_populates="user")
+
+
+class UserProfile(Base):
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User, backref=backref("profile", uselist=False))
+    avatar = Column(String, nullable=True)
+    bio = Column(String, default='')
