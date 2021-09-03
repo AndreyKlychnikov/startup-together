@@ -50,6 +50,14 @@ export default new Router({
               path: "ideas",
               component: () => import("./views/main/Ideas.vue"),
             },
+            {
+              path: "project/id:id",
+              component: ()=> import("./views/main/projects/Project.vue")
+            },
+            {
+              path: "projects",
+              component: ()=> import("./views/main/projects/Projects.vue")
+            },
           ]
         },
 
