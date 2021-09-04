@@ -11,7 +11,7 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 # Copy poetry.lock* in case it doesn't exist in the repo
 COPY ./app/pyproject.toml ./app/poetry.lock* /app/
 
-RUN mkdir ${STATIC_FILES_DIR:-"/app/app/static"}
+RUN mkdir ${STATIC_FILES_DIR:-"/app/static"}
 
 # Allow installing dev dependencies to run tests
 ARG INSTALL_DEV=false
