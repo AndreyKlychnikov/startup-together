@@ -29,7 +29,7 @@ class Project(Base):
 
 class ProjectCategory(Base):
     id = Column(Integer, primary_key=True, index=True)
-    value = Column(String)
+    value = Column(String, unique=True)
     projects = relationship(
         "Project", back_populates="categories", secondary="project_category_association"
     )
