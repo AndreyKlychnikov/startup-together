@@ -16,16 +16,25 @@ class Project(Base):
     description = Column(String, index=True)
     owner_id = Column(Integer, ForeignKey("user.id"))
     owner = relationship("User", back_populates="own_projects")
-    members = relationship("ProjectMembership", back_populates="project", lazy="selectin")
-    categories = relationship("ProjectCategory", back_populates="projects", lazy="selectin", secondary="project_category_association")
+    members = relationship(
+        "ProjectMembership", back_populates="project", lazy="selectin"
+    )
+    categories = relationship(
+        "ProjectCategory",
+        back_populates="projects",
+        lazy="selectin",
+        secondary="project_category_association",
+    )
 
 
 class ProjectCategory(Base):
     id = Column(Integer, primary_key=True, index=True)
     value = Column(String)
-    projects = relationship("Project", back_populates="categories", secondary="project_category_association")
+    projects = relationship(
+        "Project", back_populates="categories", secondary="project_category_association"
+    )
 
-    __tablename__ = 'project_category'
+    __tablename__ = "project_category"
 
 
 class ProjectCategoryAssociation(Base):
@@ -36,4 +45,4 @@ class ProjectCategoryAssociation(Base):
     __table_args__ = (
         UniqueConstraint("category_id", "project_id", name="project_category_uniq"),
     )
-    __tablename__ = 'project_category_association'
+    __tablename__ = "project_category_association"
