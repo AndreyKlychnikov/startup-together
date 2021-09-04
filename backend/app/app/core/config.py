@@ -82,7 +82,7 @@ class Settings(BaseSettings):
     FIRST_SUPERUSER_PASSWORD: str
     USERS_OPEN_REGISTRATION: bool = True
 
-    STATIC_FILES_DIR: str = '/app/app/static/'
+    STATIC_FILES_DIR: str = "/app/static/"
 
     class Config:
         case_sensitive = True

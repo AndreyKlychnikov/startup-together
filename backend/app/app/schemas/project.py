@@ -4,6 +4,13 @@ from pydantic import BaseModel
 
 from .membership import ZippedMembership
 
+# Project category
+class ProjectCategory(BaseModel):
+    value: str
+
+    class Config:
+        orm_mode = True
+
 
 # Shared properties
 class ProjectBase(BaseModel):
@@ -34,6 +41,7 @@ class ProjectInDBBase(ProjectBase):
 # Properties to return to client
 class Project(ProjectInDBBase):
     members: List[ZippedMembership]
+    categories: List[ProjectCategory]
 
 
 # Properties properties stored in DB
