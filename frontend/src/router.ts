@@ -38,9 +38,9 @@ export default new Router({
             ),
         },
         {
-          path: "main",
+          path: "",
           component: ()=> import("./views/main/Main.vue"),
-          redirect: "main/explore",
+          redirect: "/explore",
           children: [
             {
               path: "explore",
@@ -51,7 +51,7 @@ export default new Router({
               component: () => import("./views/main/Ideas.vue"),
             },
             {
-              path: "project/id:id",
+              path: "project/:id",
               component: ()=> import("./views/main/projects/Project.vue")
             },
             {

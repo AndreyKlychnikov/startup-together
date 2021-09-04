@@ -1,25 +1,20 @@
 <template>
   <v-container>
-    <div class="text-h4">Projects list</div>
-    <v-divider />
-    <v-container>
-      <v-row>
-        <v-col cols="9">
-          <project
+    <v-row class="mt-2">
+      <v-col cols="3" class="mt-2">
+        <v-card>
+          <v-card-title>filter</v-card-title>
+        </v-card>
+      </v-col>
+      <v-col cols="8">
+        <project
             v-for="data in datas"
             :key="data.id"
             :project="data"
             class="my-2"
-          />
-        </v-col>
-
-        <v-col>
-          <v-card class="mt-2">
-            <v-card-title>filter</v-card-title>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -35,8 +30,8 @@ import project from "@/views/main/explore/ProjectItem.vue";
 export default class Explore extends Vue {
   datas = [
     {
-      title: "string1",
-      description: "Project 1 description",
+      title: "fastapi",
+      description: "FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.",
       id: 0,
       owner_id: 0,
       members: [
@@ -51,10 +46,15 @@ export default class Explore extends Vue {
           accepted: true,
         },
       ],
+      categories: [
+        {
+          value: "Rest Api"
+        }
+      ]
     },
     {
-      title: "string2",
-      description: "Project 2 description",
+      title: "django",
+      description: "The Web framework for perfectionists with deadlines. ",
       id: 1,
       owner_id: 1,
       members: [
@@ -79,6 +79,15 @@ export default class Explore extends Vue {
           accepted: true,
         },
       ],
+      categories: [
+        {
+          value: "Python"
+        },{
+          value: "Backend"
+        },{
+          value: "REST Api"
+        },
+      ]
     },
   ];
 }

@@ -1,8 +1,6 @@
 <template>
-  <v-app-bar absolute color="#6A76AB" dark app>
-    <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-
-    <v-app-bar-title>StartUp Together</v-app-bar-title>
+  <v-app-bar absolute color="primary" dark app>
+    <v-app-bar-title><div>StartUp together</div></v-app-bar-title>
 
     <v-spacer></v-spacer>
 
@@ -27,7 +25,7 @@
         <v-list-item-group>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title 
+              <v-list-item-title
                 >My projects
               </v-list-item-title>
             </v-list-item-content>
