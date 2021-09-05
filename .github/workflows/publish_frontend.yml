@@ -40,11 +40,6 @@ jobs:
       - name: Get version
         run: echo VERSION=$(cat frontend/package.json | grep version | head -1 | grep -o "[0-9].[0-9]*.[0-9]*") >> $GITHUB_ENV
 
-      - name: Export env vars
-        run: |
-          export VUE_APP_ENV=${{ env.VUE_APP_ENV }}
-          export VUE_APP_NAME=${{ env.VUE_APP_NAME }}
-
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
@@ -52,3 +47,6 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY_PACKAGE }}:latest,${{ env.REGISTRY_PACKAGE }}:${{ env.VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
+          secrets: |
+            VUE_APP_ENV=${{ env.VUE_APP_ENV }}
+            VUE_APP_NAME=${{ env.VUE_APP_NAME }}
