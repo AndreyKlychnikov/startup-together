@@ -1,4 +1,4 @@
-name: Docker
+name: Publish backend
 
 on:
   push:
@@ -20,9 +20,10 @@ jobs:
 
     steps:
       - name: Read Docker Image Identifiers
-        run: |
-          echo REGISTRY_USERNAME=$(echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
-          echo REGISTRY_PACKAGE=${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.IMAGE_NAME }} >> $GITHUB_ENV
+        run: echo REGISTRY_USERNAME=$(echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+
+      - name: Set registry package link
+        run: echo REGISTRY_PACKAGE=${{ env.REGISTRY }}/${{ env.REGISTRY_USERNAME }}/${{ env.IMAGE_NAME }} >> $GITHUB_ENV
 
       - name: Checkout repository
         uses: actions/checkout@v2
