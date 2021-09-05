@@ -43,8 +43,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: ./backend
-          file: ./backend/backend.dockerfile
+          context: .
+          file: ./frontend/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY_PACKAGE }}:latest,${{ env.REGISTRY_PACKAGE }}:${{ env.VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
