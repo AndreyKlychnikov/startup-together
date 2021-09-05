@@ -8,7 +8,6 @@ env:
 
 jobs:
   build:
-    environment: build
     runs-on: self-hosted
     permissions:
       contents: read
@@ -49,5 +48,5 @@ jobs:
           tags: ${{ env.REGISTRY_PACKAGE }}:latest,${{ env.REGISTRY_PACKAGE }}:${{ env.VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
           secrets: |
-            VUE_APP_ENV=${{ jobs.build.environment.VUE_APP_ENV }}
-            VUE_APP_NAME=${{ jobs.build.environment.VUE_APP_NAME }}
+            VUE_APP_ENV=production
+            VUE_APP_NAME=startup-together
