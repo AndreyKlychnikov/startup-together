@@ -5,9 +5,9 @@
     <v-spacer></v-spacer>
 
     <v-tabs centered>
-      <v-tab to="explore">Explore</v-tab>
-      <v-tab to="ideas">Ideas</v-tab>
-      <v-tab to="projects">Projects</v-tab>
+      <v-tab to="/explore">Explore</v-tab>
+      <v-tab to="/ideas">Ideas</v-tab>
+      <v-tab to="/projects">Projects</v-tab>
     </v-tabs>
 
     <v-spacer />
