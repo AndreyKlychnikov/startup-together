@@ -38,5 +38,18 @@ export interface IProject {
             },
             accepted: boolean;
         }
-    ]
+    ],
+    categories: {
+        value: string
+    }
+}
+
+export interface IProjectCreate {
+    title: string;
+    description: string;
+}
+
+export interface IProjectUpdate {
+    title: string;
+    description: string;
 }
