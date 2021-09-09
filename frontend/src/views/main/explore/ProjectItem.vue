@@ -13,7 +13,7 @@
           {{ project.description }}
         </div>
         <v-chip-group>
-          <v-chip small v-for="category in project.categories" color="primary">{{ category.value }}</v-chip>
+          <v-chip small v-for="category in project.categories" :key="category.value" color="primary">{{ category.value }}</v-chip>
         </v-chip-group>
       </v-card-text>
     </v-container>
